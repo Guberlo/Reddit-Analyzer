@@ -1,0 +1,29 @@
+version: '2'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      tap:
+        ipv4_address: 10.0.100.22
+
+      
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    networks:
+      tap:
+        ipv4_address: 10.0.100.23
+    environment:
+      KAFKA_CREATE_TOPICS: "reddit-posts:3:1,reddit-comments:3:1:compact"
+      KAFKA_ADVERTISED_HOST_NAME: 10.0.100.23
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://10.0.100.23:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  tap:
+    external: true
