@@ -1,0 +1,36 @@
+{
+  "name" : "kafka-connect-reddit",
+  "version" : "0.2.0-SNAPSHOT",
+  "title" : "Kafka Connect Reddit",
+  "description" : "The source connector consumes posts and comments from Reddit in real time. It's\npossible to read comments from one collection of subreddits and posts from a different\ncollection, and <a href=\"https://www.reddit.com/r/all/\">r/all</a> can be read from for\neither.\n\nSeparate topics are used for posts and comments; they default to reddit-posts and\nreddit-comments respectively but can be configured differently if necessary.\n\n<a href=\"https://github.com/mattbdean/jraw\">JRAW</a> is used to continuously stream new\nposts and comments; many thanks go to\n<a href=\"https://github.com/mattbdean\">Matt Dean</a> for creating that excellent\nlibrary.\n\nThis connector is currently intended for development and entertainment purposes only and\nis not recommended or endorsed for production use cases.",
+  "owner" : {
+    "username" : "C0urante",
+    "type" : "user",
+    "name" : "Chris Egerton",
+    "logo" : "assets/aku.jpeg"
+  },
+  "support" : {
+    "summary" : "This is an open-source project supported and maintained on a best-effort by the\ncommunity and its creator.",
+    "url" : "https://github.com/C0urante/kafka-connect-reddit/issues",
+    "logo" : "assets/github.png",
+    "provider_name" : "Open Source Community"
+  },
+  "tags" : [ "stream", "social", "reddit", "live", "jraw", "network" ],
+  "features" : {
+    "supported_encodings" : [ "any" ],
+    "single_message_transforms" : true,
+    "confluent_control_center_integration" : true,
+    "kafka_connect_api" : true
+  },
+  "logo" : "assets/reddit.png",
+  "documentation_url" : "https://github.com/C0urante/kafka-connect-reddit",
+  "source_url" : "https://github.com/C0urante/kafka-connect-reddit",
+  "docker_image" : { },
+  "license" : [ {
+    "name" : "DWTFPL Version 2",
+    "url" : "http://www.wtfpl.net/txt/copying/",
+    "logo" : "assets/wtfpl.png"
+  } ],
+  "component_types" : [ "source" ],
+  "release_date" : "2020-04-20"
+}

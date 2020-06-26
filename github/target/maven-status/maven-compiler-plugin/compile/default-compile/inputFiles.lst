@@ -1,0 +1,11 @@
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/stream/CommentsStreamReader.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/stream/StreamReader.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/model/SourceRecordConverter.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/model/PostSourceRecordConverter.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/stream/Reddit.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/RedditSourceConnectorConfig.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/model/CommentSourceRecordConverter.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/RedditSourceTask.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/version/Version.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/stream/PostsStreamReader.java
+/home/guberlo/University/tap/Reddit/github/src/main/java/com/github/c0urante/kafka/connect/reddit/RedditSourceConnector.java

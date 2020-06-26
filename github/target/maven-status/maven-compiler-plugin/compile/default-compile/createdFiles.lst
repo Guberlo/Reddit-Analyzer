@@ -1,0 +1,11 @@
+com/github/c0urante/kafka/connect/reddit/version/Version.class
+com/github/c0urante/kafka/connect/reddit/RedditSourceTask.class
+com/github/c0urante/kafka/connect/reddit/model/SourceRecordConverter.class
+com/github/c0urante/kafka/connect/reddit/stream/Reddit.class
+com/github/c0urante/kafka/connect/reddit/model/PostSourceRecordConverter.class
+com/github/c0urante/kafka/connect/reddit/RedditSourceConnectorConfig.class
+com/github/c0urante/kafka/connect/reddit/stream/CommentsStreamReader.class
+com/github/c0urante/kafka/connect/reddit/stream/PostsStreamReader.class
+com/github/c0urante/kafka/connect/reddit/stream/StreamReader.class
+com/github/c0urante/kafka/connect/reddit/model/CommentSourceRecordConverter.class
+com/github/c0urante/kafka/connect/reddit/RedditSourceConnector.class
