@@ -40,7 +40,7 @@ redditPreSchema = tp.StructType([
 
 redditPostSchema = tp.StructType([
     # Todo use proper timestamp
-    tp.StructField(name= 'created_utc', dataType= tp.StringType(),  nullable= True),
+    tp.StructField(name= 'created_utc', dataType= tp.TimestampType(),  nullable= True),
     tp.StructField(name= 'title',      dataType= tp.StringType(),  nullable= True),
     tp.StructField(name= 'url',      dataType= tp.StringType(),  nullable= True),
     tp.StructField(name= 'subreddit',      dataType= tp.StringType(),  nullable= True),
@@ -75,26 +75,27 @@ def elaborate(key, rdd):
     return
   
   print("********************")
-
-  # INSERT HERE SOMEWHERE THE CALL TO GET_FLAIR
   
+  # Starting RDD with the data from kafka
   rowRdd = comment.map(lambda t: Row(created_utc=t[0], title=t[1], url=t[2], subreddit=t[3], id=t[4]))
-  #rowRdd = comment.map(lambda t: Row(subreddit=t[0], author=t[1], body=t[2]))
+
+  # Converting RDD into a spark dataframe
   wordsDataFrame = spark.createDataFrame(rowRdd, schema=redditPreSchema)
-  wordsDataFrame = wordsDataFrame.withColumn('created_utc', f.date_format(wordsDataFrame.created_utc.cast(dataType=tp.TimestampType()), "yyyy-MM-dd HH:mm:ss"))
-  pruk = wordsDataFrame.select('created_utc')
-  pruk.show()
-  #wordsDataFrame = wordsDataFrame.withColumn('created_utc', f.to_timestamp('created_utc', "yyyy-MM-dd HH:mm:ss"))
+
+  # Converting the UTC to timestamp
+  wordsDataFrame = wordsDataFrame.toPandas()
+  wordsDataFrame['created_utc'] = pd.to_datetime(wordsDataFrame['created_utc'], dayfirst=True, unit='s')
+  wordsDataFrame['created_utc'] = wordsDataFrame['created_utc'].dt.tz_localize('UTC').dt.tz_convert('Europe/Rome')
+  print(wordsDataFrame['created_utc'])
+
+  # Converting the pandas dataframe into a spark dataframe so that we can stream
   wordsDataFrame = spark.createDataFrame(wordsDataFrame.collect(), schema=redditPostSchema)
-  print('*****************************')
-  print('*****************************')
+
   new = wordsDataFrame.rdd.map(lambda item: {'created_utc' : item['created_utc'], 'title' : item['title'], 'url' : item['url'], 'subreddit' : item['subreddit'], 'id' : item['id']})
-  #new = wordsDataFrame.rdd.map(lambda item: {'subreddit' : item['subreddit'], 'author' : item['author'], 'body' : item['body']})
   finalRdd = new.map(lambda x: json.dumps(x, default=str)).map(lambda x: ('key', x))
-  #print("FINAL RDD")
-  #wordsDataFrame.show()
-  #print(finalRdd.collect())
-  #print("RDD PRINTED: ")
+  wordsDataFrame.show()
+
+  print("********************")
 
   finalRdd.saveAsNewAPIHadoopFile(
     path='-',
