@@ -38,9 +38,9 @@ This wil bring up both zookeeper and kafka server.
 
 Start reddit connector. This will get streaming data from posts and comments in the desidered subreddit (which you can set on reddit.env file).
 
-Move to ```/bin```/ and type
+Move to ```/bin``` and type
 
-```./startRedditConnector.sh```/
+```./startRedditConnector.sh```
 
 This will start a docker container running the kafka connector which will stream data in two different kafka topics:
 * **reddit-posts**
