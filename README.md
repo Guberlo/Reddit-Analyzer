@@ -20,7 +20,7 @@ In order to accomplish our goal we need a few things:
 
 ## Data Pipeline
 
-![Pipeline]()
+![Pipeline](images/pipeline.png)
 
 ## Step 1
 
@@ -40,7 +40,7 @@ Start reddit connector. This will get streaming data from posts and comments in 
 
 Move to ```/bin``` and type
 
-```./startRedditConnector.sh```
+```./reddit_connector.sh```
 
 This will start a docker container running the kafka connector which will stream data in two different kafka topics:
 * **reddit-posts**
